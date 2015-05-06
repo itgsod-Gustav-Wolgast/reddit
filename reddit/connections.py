@@ -23,7 +23,7 @@ class Client():
                 self.client_id = getpass.getpass("Your reddit bot client id: ")
                 self.client_secret = getpass.getpass("Your reddit bot client secret: ")
 
-                # save it for next time
+
                 keyring.set_password(app_name,'client_id',self.client_id)
                 keyring.set_password(app_name,'client_secret',self.client_secret)
 
@@ -35,7 +35,7 @@ class Client():
         if not passwd:
             passwd = getpass.getpass()
 
-            # save it for next time
+
             keyring.set_password(app_name, reddit_id, passwd)
 
 
@@ -68,4 +68,12 @@ class Client():
 
         print response.headers
 
+        return response.json()
+
+    def request_data(self, uri, data):
+
+        headers = {"User-Agent": config['reddit_boot']}
+        headers['Authorization'] = 'bearer %s' % self.access_token
+
+        response = requests.post(uri, data=data, headers=headers)
         return response.json()
