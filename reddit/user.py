@@ -16,7 +16,10 @@ class User(object):
 
     def me (self):
 
-        pprint(reddit.client.request(url_me))
+        return(reddit.client.request(url_me))
 
 
 
+    def link_karma (self):
+
+        return reddit.client.request(url_me)['link_karma']
