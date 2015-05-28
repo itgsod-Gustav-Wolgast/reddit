@@ -65,9 +65,6 @@ class Client():
 
         response = requests.get(uri,headers=headers)
 
-
-        print response.headers
-
         return response.json()
 
     def request_data(self, uri, data):

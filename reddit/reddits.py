@@ -12,7 +12,10 @@ class Subreddit(object):
 
 
     def hot(self):
-        pprint(reddit.client.request(url_hot.format(subreddit=self.subreddit)))
+        return reddit.client.request(url_hot.format(subreddit=self.subreddit))
+
+    def hot_children(self):
+        return self.hot()['data']['children']
 
 
 
